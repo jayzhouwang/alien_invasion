@@ -1,4 +1,5 @@
 import sys
+
 import pygame
 
 from settings import Settings
@@ -35,7 +36,7 @@ class AlienInvasion:
             self._update_screen()
 
     def _checkout_events(self):
-        # Respond to keypresses and mouse events
+        """Respond to keypresses and mouse events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -78,6 +79,12 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+    def _create_feet(self):
+        """Create the feet of aliens."""
+        # Make an alien.
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen"""
         self.screen.fill(self.settings.bg_color)
@@ -88,11 +95,6 @@ class AlienInvasion:
 
         pygame.display.flip()
 
-    def _create_feet(self):
-        """Create the feet of aliens."""
-        # Make an alien.
-        alien = Alien(self)
-        self.aliens.add(alien)
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
